@@ -1,7 +1,7 @@
 # DataClean OpenEnv
 
 🚀 Live API: https://bhoomichowksey-dataclean-env.hf.space  
-📂 GitHub Repo: https://github.com/bhoomichowksey/dataclean-openecv
+📂 GitHub Repo: https://github.com/bhoomichowksey/dataclean-openenv
 ---
 title: DataClean Env
 emoji: 🧹
