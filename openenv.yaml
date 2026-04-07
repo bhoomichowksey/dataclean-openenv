@@ -1,65 +1,25 @@
-name: DataClean OpenEnv
-version: 1.0.0
-description: >
-  An OpenEnv-compliant reinforcement learning environment where an AI agent
-  learns to clean messy real-world tabular data through a sequence of operations.
-
-tags:
-  - openenv
-  - data-cleaning
-  - tabular
-  - real-world
+name: dataclean-env
+version: "1.0.0"
+description: Data cleaning environment for OpenEnv
 
 sdk: docker
 app_port: 7860
 
 endpoints:
   reset: POST /reset
-  step:  POST /step
-  state: GET  /state
+  step: POST /step
+  state: GET /state
 
 tasks:
   - name: fill_missing
-    difficulty: easy
-    max_steps: 8
-    description: >
-      Fill null values (0 for numbers, 'unknown' for strings) and rename
-      columns (strip spaces, lowercase).
+    description: Fill missing values in dataset
 
   - name: dedup_typefix
-    difficulty: medium
-    max_steps: 10
-    description: >
-      Remove exact duplicate rows; cast price to float (invalid→0.0)
-      and in_stock to bool.
+    description: Remove duplicates and fix data types
 
   - name: full_pipeline
-    difficulty: hard
-    max_steps: 15
-    description: >
-      Remove salary outliers (IQR method), normalize phone numbers to
-      10 digits, fix status typos/casing, normalize department casing.
+    description: Perform full data cleaning pipeline
 
 reward:
   min: 0.0
   max: 1.0
-  type: dense
-  description: >
-    Partial progress reward equal to the improvement in task score at each step.
-    Final score is graded 0.0–1.0 by a deterministic programmatic grader.
-
-observation_space:
-  task_name: str
-  step: int
-  columns: list[str]
-  dtypes: dict[str, str]
-  shape: tuple[int, int]
-  missing_counts: dict[str, int]
-  sample_rows: list[dict]
-  duplicate_count: int
-  last_action_error: str | null
-  hint: str
-
-action_space:
-  operation: str
-  params: dict
