@@ -3,6 +3,14 @@ name = "dataclean-openenv"
 version = "0.1.0"
 description = "OpenEnv Data Cleaning Environment"
 requires-python = ">=3.9"
+dependencies = [
+    "openenv-core>=0.2.0",
+    "fastapi",
+    "uvicorn"
+]
+
+[project.scripts]
+server = "server.app:app"
 
 [tool.setuptools]
-packages = []
+packages = ["server"]
